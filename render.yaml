@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: quickbites-support-bot
+    runtime: python
+    plan: free
+    region: singapore
+    pythonVersion: "3.11"
+    buildCommand: pip install -r bot/requirements.txt
+    startCommand: uvicorn bot.server:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false                # set in Render dashboard, not in YAML
+      - key: ANTHROPIC_MODEL
+        value: claude-sonnet-4-6
+      - key: SIMULATOR_BASE_URL
+        value: https://simulator-75lk3meynq-el.a.run.app
+      - key: CANDIDATE_TOKEN
+        sync: false                # set in Render dashboard
+      - key: DB_PATH
+        value: ./quickbites-candidate-starter/app.db
+      - key: POLICY_PATH
+        value: ./quickbites-candidate-starter/policy_and_faq.md
+      - key: PYTHON_VERSION
+        value: "3.11"
