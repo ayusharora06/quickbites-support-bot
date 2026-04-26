@@ -5,6 +5,10 @@ customers in plain English, looks up the relevant order/customer/restaurant/ride
 history, consults the internal policy, and either resolves the ticket itself
 (refund, complaint, abuse flag, escalation) or hands off to a human.
 
+**Live bot:** https://quickbites-support-bot.onrender.com
+(`GET /healthz` for liveness; `POST /chat` with `{"customer_message": "..."}` for a turn.)
+**Design doc:** [DESIGN.md](DESIGN.md)
+
 ## Architecture (one screen)
 
 ```
